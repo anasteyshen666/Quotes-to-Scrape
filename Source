@@ -1,0 +1,15 @@
+import requests
+from bs4 import BeautifulSoup
+headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'}
+arl = 'https://quotes.toscrape.com/'
+reph = requests.get(arl, headers=headers)
+soupa = BeautifulSoup(reph.text, 'html.parser')
+af = soupa.find_all('div', class_='quote')
+for i in af:
+    g = i.find('span', class_='text')
+    j = i.find('small', class_='author')
+    kl = i.find('a', class_='tag')
+    print(g.text)
+    print(j.text)
+    print('Tag:' + kl.text)
+    print()
